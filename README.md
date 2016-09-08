@@ -1,28 +1,28 @@
-## rollup config
+# rollup config
 
 basic config of rollup for javascript development. Thanks @[haozi](https://github.com/haozime)
 
-###  install 
+##  install 
 
 ```bash
 npm install 
 ```
 
-### use 
+## use 
 
 - change package.name with your package name
-- ** build **
+- **build**
 
 ```bash
 npm run build
 ``` 
-- ** watch ** 
+- **watch** 
 
 ```bash
 npm run watch
 ```
 
-- ** test ** 
+- **test** 
 ```bash
 npm run test
 ```
