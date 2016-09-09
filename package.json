@@ -4,11 +4,11 @@
   "description": "rollup config for javascript lib development",
   "main": "index.js",
   "scripts": {
-    "test": "npm run build && npm run jasmine",
+    "test": "npm run jasmine",
     "clean": "rm -fr dist/*",
     "build": "(if [ ! -d dist ];then  mkdir dist; fi) && node build/build.js",
     "watch": "./node_modules/.bin/watch \"npm run build\" src/",
-    "jasmine": "istanbul cover jasmine-node tests"
+    "jasmine": "istanbul cover jasmine-node -- --matchall tests"
   },
   "keywords": [
     "rollup",
@@ -21,13 +21,13 @@
     "babel-preset-es2015": "^6.13.2",
     "babel-preset-es2015-rollup": "^1.2.0",
     "html-minifier": "^3.0.2",
-    "istanbul": "^0.4.4",
+    "istanbul": "^0.4.5",
     "jasmine-node": "^1.14.5",
     "rollup": "^0.34.7",
     "rollup-plugin-babel": "^2.6.1",
     "rollup-plugin-replace": "^1.1.1",
-    "watch": "^0.19.2",
-    "uglify-js": "^2.7.0"
+    "uglify-js": "^2.7.0",
+    "watch": "^0.19.2"
   },
   "bugs": "https://github.com/Jerret321/rollup-config/issues",
   "author": "Jerret",

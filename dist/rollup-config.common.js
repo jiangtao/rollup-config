@@ -1,13 +1,18 @@
 /*!
- * rollup-config v0.0.1
+ * rollup-config v0.1.1
  * (c) 2016 Jerret
  * Released under the MIT License.
  */
 
 'use strict';
 
-function say(name) {
-  return name;
+Object.defineProperty(exports, '__esModule', { value: true });
+
+function sum() {
+  console.log(arguments);
+  return Array.prototype.reduce.call(arguments, function (pre, cur) {
+    return pre + cur;
+  }, 0);
 }
 
-module.exports = say;
+exports.sum = sum;

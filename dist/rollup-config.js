@@ -1,19 +1,24 @@
 /*!
- * rollup-config v0.0.1
+ * rollup-config v0.1.1
  * (c) 2016 Jerret
  * Released under the MIT License.
  */
 
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
-  typeof define === 'function' && define.amd ? define(factory) :
-  (global.rollupConfig = factory());
-}(this, (function () { 'use strict';
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
+  typeof define === 'function' && define.amd ? define(['exports'], factory) :
+  (factory((global.rollupConfig = global.rollupConfig || {})));
+}(this, (function (exports) { 'use strict';
 
-function say(name) {
-  return name;
+function sum() {
+  console.log(arguments);
+  return Array.prototype.reduce.call(arguments, function (pre, cur) {
+    return pre + cur;
+  }, 0);
 }
 
-return say;
+exports.sum = sum;
+
+Object.defineProperty(exports, '__esModule', { value: true });
 
 })));
