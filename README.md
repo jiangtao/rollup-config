@@ -1,6 +1,7 @@
 # rollup config
 
 basic config of rollup for javascript development. Thanks @[haozi](https://github.com/haozime)
+
 ---
 [![Build Status](https://travis-ci.org/Jerret321/rollup-config.svg?branch=master)](https://travis-ci.org/Jerret321/rollup-config/branches)
 [![codecov](https://codecov.io/gh/Jerret321/rollup-config/branch/master/graph/badge.svg)](https://codecov.io/gh/Jerret321/rollup-config)
