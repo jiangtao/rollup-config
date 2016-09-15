@@ -2,7 +2,7 @@
 
 var download = require('download-git-repo')
 var program  = require('commander')
-var exists   = require('fs').existsSync
+var fs       = require('fs')
 var path     = require('path')
 var chalk    = require('chalk')
 var inquirer = require('inquirer')
@@ -46,23 +46,32 @@ var template     = program.args[0]
 var absolutePath = path.resolve('..', process.cwd(), template)
 inquirer.prompt([{
 	type:    'confirm',
-	message: exists(absolutePath)
+	message: fs.existsSync(absolutePath)
 		         ? 'Target directory exists. Continue?'
 		         : 'Generate project in current directory?',
 	name:    'ok'
 }]).then(function (answers) {
 	if (answers.ok) {
 		console.log()
-		console.log(chalk.yellow('  downloading'))
+		console.log(chalk.gray('  downloading template'))
 		return repoDownload('github:Jerret321/rollup-config#template', absolutePath)
 	} else {
 		return Promise.reject('You disallow continue the action')
 	}
 }).then(function (downloaded) {
-	if(downloaded){
-		console.log()
-		console.log(chalk.yellow('  ' + template + ' generated successfully'))
+	if (downloaded) {
+		return changePackage(path.resolve(path.join(absolutePath, 'package.json')), {
+			version: '0.0.1',
+			name:    template
+		})
 	}
+}).then(function(res){
+	console.log()
+	console.log(chalk.gray('  ' + template + ' generated successfully'))
+	console.log()
+	console.log('  ' + '$ cd ' + template)
+	console.log('  ' + '$ npm install')
+	console.log(chalk.green('  ' + 'Best wishes for you ^_^!! '))
 }).catch(function (e) {
 	console.log()
 	console.log(chalk.red('  ' + e))
@@ -74,6 +83,20 @@ function repoDownload (repo, dir, clone) {
 		download(repo, dir, function (err) {
 			if (err) reject(err)
 			resolve(true)
+		})
+	})
+}
+function changePackage (jsonFile, query) {
+	var packageJson = require(jsonFile)
+	for (var i in query) {
+		if (packageJson.hasOwnProperty(i)) {
+			packageJson[i] = query[i]
+		}
+	}
+	return new Promise(function (resolve, reject) {
+		fs.writeFile(jsonFile, JSON.stringify(packageJson), 'utf-8', function (err, res) {
+			if (err) reject(err)
+			resolve(res)
 		})
 	})
 }
