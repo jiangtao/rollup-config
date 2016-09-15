@@ -1,5 +1,5 @@
 /*!
- * rollup-config v0.1.1
+ * rollup-config v0.2.1
  * (c) 2016 Jerret
  * Released under the MIT License.
  */
