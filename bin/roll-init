@@ -70,7 +70,9 @@ inquirer.prompt([{
 	console.log(chalk.gray('  ' + template + ' generated successfully'))
 	console.log()
 	console.log('  ' + '$ cd ' + template)
+	console.log()
 	console.log('  ' + '$ npm install')
+	console.log()
 	console.log(chalk.green('  ' + 'Best wishes for you ^_^!! '))
 }).catch(function (e) {
 	console.log()
@@ -94,7 +96,7 @@ function changePackage (jsonFile, query) {
 		}
 	}
 	return new Promise(function (resolve, reject) {
-		fs.writeFile(jsonFile, JSON.stringify(packageJson), 'utf-8', function (err, res) {
+		fs.writeFile(jsonFile, JSON.stringify(packageJson, null, 2), 'utf-8', function (err, res) {
 			if (err) reject(err)
 			resolve(res)
 		})
