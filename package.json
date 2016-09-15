@@ -1,6 +1,6 @@
 {
   "name": "rollup-config",
-  "version": "0.2.9",
+  "version": "0.3.0",
   "description": "rollup config for javascript lib development",
   "main": "index.js",
   "bin": {
