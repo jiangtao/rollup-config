@@ -1,7 +1,7 @@
 {
-  "name": "rollup-config",
-  "version": "0.2.1",
-  "description": "rollup config for javascript lib development",
+  "name": "rollup samples",
+  "version": "0.0.1",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "npm run jasmine",
@@ -11,10 +11,6 @@
     "jasmine": "istanbul cover jasmine-node -- --matchall tests"
   },
   "keywords": [
-    "rollup",
-    "config",
-    "javascript",
-    "node"
   ],
   "devDependencies": {
     "babel-core": "^6.13.2",
@@ -29,7 +25,7 @@
     "uglify-js": "^2.7.0",
     "watch": "^0.19.2"
   },
-  "bugs": "https://github.com/Jerret321/rollup-config/issues",
-  "author": "Jerret",
-  "license": "MIT"
+  "bugs": "",
+  "author": "",
+  "license": ""
 }
