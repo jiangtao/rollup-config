@@ -1,0 +1,104 @@
+#!/usr/bin/env node
+
+var download = require('download-git-repo')
+var program  = require('commander')
+var fs       = require('fs')
+var path     = require('path')
+var chalk    = require('chalk')
+var inquirer = require('inquirer')
+
+/**
+ * Help.
+ */
+
+program.on('--help', function () {
+	console.log('  Examples:')
+	console.log()
+	console.log(chalk.gray('    # create a new project based on rollup building'))
+	console.log('    $ roll init your-project')
+	console.log()
+})
+
+/**
+ * Help.
+ */
+
+function help () {
+	program.parse(process.argv)
+	if (program.args.length < 1) return program.help()
+}
+help()
+
+/**
+ * Padding.
+ */
+
+console.log()
+process.on('exit', function () {
+	console.log()
+})
+
+/**
+ * Settings.
+ */
+
+var template     = program.args[0]
+var absolutePath = path.resolve('..', process.cwd(), template)
+inquirer.prompt([{
+	type:    'confirm',
+	message: fs.existsSync(absolutePath)
+		         ? 'Target directory exists. Continue?'
+		         : 'Generate project in current directory?',
+	name:    'ok'
+}]).then(function (answers) {
+	if (answers.ok) {
+		console.log()
+		console.log(chalk.gray('  downloading template'))
+		return repoDownload('github:Jerret321/rollup-config#template', absolutePath)
+	} else {
+		return Promise.reject('You disallow continue the action')
+	}
+}).then(function (downloaded) {
+	if (downloaded) {
+		return changePackage(path.resolve(path.join(absolutePath, 'package.json')), {
+			version: '0.0.1',
+			name:    template
+		})
+	}
+}).then(function(res){
+	console.log()
+	console.log(chalk.gray('  ' + template + ' generated successfully'))
+	console.log()
+	console.log('  ' + '$ cd ' + template)
+	console.log()
+	console.log('  ' + '$ npm install')
+	console.log()
+	console.log(chalk.green('  ' + 'Best wishes for you ^_^!! '))
+}).catch(function (e) {
+	console.log()
+	console.log(chalk.red('  ' + e))
+})
+
+function repoDownload (repo, dir, clone) {
+	clone = clone || false
+	return new Promise(function (resolve, reject) {
+		download(repo, dir, function (err) {
+			if (err) reject(err)
+			resolve(true)
+		})
+	})
+}
+function changePackage (jsonFile, query) {
+	var packageJson = require(jsonFile)
+	for (var i in query) {
+		if (packageJson.hasOwnProperty(i)) {
+			packageJson[i] = query[i]
+		}
+	}
+	return new Promise(function (resolve, reject) {
+		fs.writeFile(jsonFile, JSON.stringify(packageJson, null, 2), 'utf-8', function (err, res) {
+			if (err) reject(err)
+			resolve(res)
+		})
+	})
+}

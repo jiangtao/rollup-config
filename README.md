@@ -8,15 +8,16 @@ basic config of rollup for javascript development. Thanks @[haozi](https://githu
 [![dependencies Status](https://david-dm.org/Jerret321/rollup-config/status.svg)](https://david-dm.org/Jerret321/rollup-config)
 [![devDependencies Status](https://david-dm.org/Jerret321/rollup-config/dev-status.svg)](https://david-dm.org/Jerret321/rollup-config?type=dev)
 
-##  install
+##  install global
 
 ```bash
-npm install
+npm install -g rollup-config
 ```
 
 ## use
-
-- change package.name with your package name
+- roll init your-package
+- cd your-package
+- npm install 
 - **build**
 
 ```bash
