@@ -1,7 +1,6 @@
-export function sum() {
-  console.log(arguments);
-  return Array.prototype.reduce.call(arguments, function(pre, cur){
-    return pre + cur
-  }, 0);
+export function sum(...args) {
+	return args.reduce(function(pre, cur) {
+		return pre + cur
+	}, 0)
 }
 
