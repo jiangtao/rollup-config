@@ -1,13 +1,7 @@
 {
-<<<<<<< HEAD
   "name": "rollup samples",
   "version": "0.0.1",
   "description": "",
-=======
-  "name": "rollup-config",
-  "version": "1.0.0",
-  "description": "rollup config for javascript lib development",
->>>>>>> master
   "main": "index.js",
   "bin": {
     "roll": "bin/roll",
